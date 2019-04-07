@@ -153,12 +153,12 @@ plt.savefig(figpath + 'upvote_adjective')
 # pants, blouses, blazers). this further suggests that the foundation of a BC
 # wardrobe is neutral, timeless pieces.
 
-# statistically speaking, what qualities of certain generic clothing items make
-# them "more" BC?
+# statistically speaking, what qualities of certain generic clothing items are
+# associated with being "more" BC?
 
 # for a given parent item p, regress the upvotes of comment i mentioning item p
 # onto dummies for specific clothing item and modifying adjectives to determine 
-# what qualities make a given generic item more or less BC. 
+# what qualities are associated with a given generic item being more/less BC. 
 for parent_item in ['dresses','jackets','pants','shoes','sweaters','tops']:
     
     obs = data.loc[data['parent_item']==parent_item]
@@ -179,7 +179,7 @@ for parent_item in ['dresses','jackets','pants','shoes','sweaters','tops']:
     X = item_dummies
     
     # create interaction terms where there's >= 1 instance of the interaction 
-    # this avoids collinearity when multiple items don't appear with the same adj.
+    # avoids collinearity when multiple items don't appear with the same adj.
     interact_vars = []
     interactions = obs.groupby(['item','adjective']).adjective.count().index
     for i in range(len(interactions)):
@@ -213,4 +213,4 @@ for parent_item in ['dresses','jackets','pants','shoes','sweaters','tops']:
     
 # overall, these results suggest that a "good" BC outfit for women incorporates
 # separates with tailored shapes and high-quality fabrics; and semi-casual
-# footwear choices, perhaps with a heel for polish.
+# footwear choices, perhaps with a high heel for polish.
